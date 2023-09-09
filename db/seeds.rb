@@ -19,22 +19,26 @@ AltQuestion.create!(tema_id:Tema.first().id,enunciado:"¿Qué tipo de informaci�
             respuesta:'c',
             dificultad:1)
 
+AltQuestion.create!(tema_id:Tema.first().id,enunciado:"¿Cómo se llama el punto en el que las tres fases (sólido, líquido y vapor) coexisten en equilibrio?",
+            alternativa1:"Punto límite.",
+            alternativa2:"Punto crítico.",
+            alternativa3:"Punto de coexistencia.",
+            alternativa4:"Punto triple.",
+            tip1:"Este concepto es muy general, especifica según el estado del componente.",
+            tip2:"En este punto no se distinguen las tres fases.",
+            tip3:"Este concepto es similar al correcto, pero no en un contexto técnico y científico.",
+            tip4:"Correcto!",
+            respuesta:'d',
+            dificultad:1)
 
-
-# ¿Qué tipo de información proporciona un diagrama de fases PvT?
-# a) Información sobre la densidad de una sustancia.
-# b) Información sobre la temperatura de fusión.
-# c) Información sobre las fases en equilibrio de una sustancia.
-# d) Información sobre la velocidad de evaporación.
-
-# ¿Cómo se llama el punto en el que las tres fases (sólido, líquido y vapor) coexisten en equilibrio?
-# a) Punto límite.
-# b) Punto crítico.
-# c) Punto de coexistencia.
-# d) Punto triple.
-
-# En un diagrama de fases PvT, ¿qué representa la curva de coexistencia de fases?
-# a) El punto crítico.
-# b) La línea de saturación.
-# c) La temperatura de fusión.
-# d) La densidad máxima.
+AltQuestion.create!(tema_id:Tema.first().id,enunciado:"En un diagrama de fases PvT, ¿qué representa la curva de coexistencia de fases?",
+            alternativa1:"El punto crítico.",
+            alternativa2:"La línea de saturación.",
+            alternativa3:"La temperatura de fusión.",
+            alternativa4:"La densidad máxima.",
+            tip1:"El punto crítico es un punto específico en el diagrama, pero no es una representación de la curva en sí.",
+            tip2:"Correcto!",
+            tip3:"La temperatura de fusión se refiere al punto en el que un sólido se convierte en líquido a una presión constante y no está relacionada directamente con la curva de coexistencia de fases.",
+            tip4:"La densidad máxima de una sustancia generalmente ocurre en condiciones de alta presión y baja temperatura, pero no está relacionada directamente con la curva de coexistencia de fases.",
+            respuesta:'b',
+            dificultad:1)
