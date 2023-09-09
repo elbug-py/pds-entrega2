@@ -42,3 +42,7 @@ AltQuestion.create!(tema_id:Tema.first().id,enunciado:"En un diagrama de fases P
             tip4:"La densidad máxima de una sustancia generalmente ocurre en condiciones de alta presión y baja temperatura, pero no está relacionada directamente con la curva de coexistencia de fases.",
             respuesta:'b',
             dificultad:1)
+
+DevQuestion.create!(tema_id: Tema.first.id,
+                    dificultad:1,
+                    tip:"Utiliza la densisad para calcular los volúmenes del líquido y gas.")

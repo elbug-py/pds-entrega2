@@ -1,6 +1,18 @@
 class DevQuestionsController < ApplicationController
   before_action :set_dev_question, only: %i[ show edit update destroy ]
 
+  def generar_pregunta_tipo_1
+    kg = rand(1..10)  # Genera un valor aleatorio entre 1 y 10 kg
+    temperatura = rand(10..30)  # Genera un valor aleatorio entre 10°C y 30°C
+    presion = rand(1..5)  # Genera un valor aleatorio entre 1 bar y 5 bar
+
+    pregunta = "Un cilindro contiene #{kg} kg de una sustancia en estado líquido a una temperatura de #{temperatura}°C y una presión de #{presion} bar. Si se permite que la sustancia se evapore a su estado gaseoso, calcula el cambio de volumen del sistema."
+
+    DevQuestion.create(enunciado: pregunta, tema: 1, dificultad: 1, tip:"Utiliza la densisad para calcular los volúmenes del líquido y gas.")
+
+    redirect_to root_path, notice: 'Pregunta generada con éxito.'
+  end
+
   # GET /dev_questions or /dev_questions.json
   def index
     @dev_questions = DevQuestion.all
