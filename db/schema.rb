@@ -20,11 +20,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_09_135652) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "nombre", null: false
-    t.string "apellido", null: false
-    t.integer "modelo_alumno", default: 0
-    t.string "materia_actual_integer", default: 1
-    t.integer "profile", default: 0
+    t.string "nombre"
+    t.string "apellido"
+    t.integer "modelo_alumno"
+    t.string "materia_actual_integer"
+    t.integer "profile"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
