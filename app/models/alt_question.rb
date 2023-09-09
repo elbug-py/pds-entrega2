@@ -1,0 +1,2 @@
+class AltQuestion < ApplicationRecord
+end

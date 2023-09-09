@@ -1,0 +1,2 @@
+class DevQuestion < ApplicationRecord
+end

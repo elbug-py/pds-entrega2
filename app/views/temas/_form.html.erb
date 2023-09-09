@@ -1,0 +1,22 @@
+<%= form_with(model: tema) do |form| %>
+  <% if tema.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(tema.errors.count, "error") %> prohibited this tema from being saved:</h2>
+
+      <ul>
+        <% tema.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :materia_actual, style: "display: block" %>
+    <%= form.text_field :materia_actual %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

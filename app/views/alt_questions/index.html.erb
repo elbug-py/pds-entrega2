@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Alt questions</h1>
+
+<div id="alt_questions">
+  <% @alt_questions.each do |alt_question| %>
+    <%= render alt_question %>
+    <p>
+      <%= link_to "Show this alt question", alt_question %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New alt question", new_alt_question_path %>

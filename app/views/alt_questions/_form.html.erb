@@ -1,0 +1,57 @@
+<%= form_with(model: alt_question) do |form| %>
+  <% if alt_question.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(alt_question.errors.count, "error") %> prohibited this alt_question from being saved:</h2>
+
+      <ul>
+        <% alt_question.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :id_tema, style: "display: block" %>
+    <%= form.number_field :id_tema %>
+  </div>
+
+  <div>
+    <%= form.label :enunciado, style: "display: block" %>
+    <%= form.text_area :enunciado %>
+  </div>
+
+  <div>
+    <%= form.label :alternativa1, style: "display: block" %>
+    <%= form.text_field :alternativa1 %>
+  </div>
+
+  <div>
+    <%= form.label :alternativa2, style: "display: block" %>
+    <%= form.text_field :alternativa2 %>
+  </div>
+
+  <div>
+    <%= form.label :alternativa3, style: "display: block" %>
+    <%= form.text_field :alternativa3 %>
+  </div>
+
+  <div>
+    <%= form.label :alternativa4, style: "display: block" %>
+    <%= form.text_field :alternativa4 %>
+  </div>
+
+  <div>
+    <%= form.label :respuesta, style: "display: block" %>
+    <%= form.text_field :respuesta %>
+  </div>
+
+  <div>
+    <%= form.label :dificultad, style: "display: block" %>
+    <%= form.number_field :dificultad %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
