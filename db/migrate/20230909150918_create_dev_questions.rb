@@ -3,7 +3,6 @@ class CreateDevQuestions < ActiveRecord::Migration[7.0]
     create_table :dev_questions do |t|
       t.references :tema, foreign_key: true, null: false
       t.text :enunciado
-      t.string :respuesta
       t.integer :dificultad
 
       t.timestamps

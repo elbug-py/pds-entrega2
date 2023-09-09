@@ -18,9 +18,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_09_150948) do
     t.bigint "tema_id", null: false
     t.text "enunciado", null: false
     t.string "alternativa1", null: false
+    t.string "tip1", null: false
     t.string "alternativa2", null: false
+    t.string "tip2", null: false
     t.string "alternativa3", null: false
+    t.string "tip3", null: false
     t.string "alternativa4"
+    t.string "tip4"
     t.string "respuesta", null: false
     t.integer "dificultad", null: false
     t.datetime "created_at", null: false
@@ -31,7 +35,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_09_150948) do
   create_table "dev_questions", force: :cascade do |t|
     t.bigint "tema_id", null: false
     t.text "enunciado"
-    t.string "respuesta"
     t.integer "dificultad"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
