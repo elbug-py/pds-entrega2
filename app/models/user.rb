@@ -3,4 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+  enum :profile, {
+  alumno: 0,
+  profesor: 1
+  }
+
+  validates :nombre, presence: true
+  validates :apellido, presence: true
 end
