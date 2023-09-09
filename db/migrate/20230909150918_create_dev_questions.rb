@@ -4,6 +4,7 @@ class CreateDevQuestions < ActiveRecord::Migration[7.0]
       t.references :tema, foreign_key: true, null: false
       t.text :enunciado
       t.integer :dificultad
+      t.string :tip
 
       t.timestamps
     end
