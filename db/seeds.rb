@@ -44,5 +44,6 @@ AltQuestion.create!(tema_id:Tema.first().id,enunciado:"En un diagrama de fases P
             dificultad:1)
 
 DevQuestion.create!(tema_id: Tema.first.id,
+                    enunciado:"¿Qué es un diagrama de fases PvT?",
                     dificultad:1,
                     tip:"Utiliza la densisad para calcular los volúmenes del líquido y gas.")
