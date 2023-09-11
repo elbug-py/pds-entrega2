@@ -28,8 +28,11 @@ class UsersController < ApplicationController
     # POST /users or /users.json
     def create
       @user = User.new(user_params)
+      puts("WEON\n\n\n\n\n\n\n\n\n\n\n")
+      # debugger
   
       respond_to do |format|
+        debugger
         if @user.save
           format.html { redirect_to user_url(@user), notice: "User was successfully created." }
           format.json { render :show, status: :created, location: @user }
@@ -67,7 +70,6 @@ class UsersController < ApplicationController
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_user
-        debugger
         @user = User.find(params[:id])
       end
   
