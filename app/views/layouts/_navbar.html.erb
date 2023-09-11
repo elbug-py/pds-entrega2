@@ -1,29 +1,38 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <%= link_to 'ITS', root_path, class: 'navbar-brand' %>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-            <%= link_to 'Home', root_path, class: 'nav-link active' %>
-            </li>
+  <div class="container-fluid">
+    <%= link_to 'ITS', root_path, class: 'navbar-brand' %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to 'Home', root_path, class: 'nav-link active' %>
+        </li>
 
-            <%if (user_signed_in? && current_user.supervisor?) || (user_signed_in? && current_user.admin?)%>
-                <li class="nav-item">
-                <!--%= link_to 'Users', users_path, class: 'nav-link active' %-->
-                </li>
-            <%end%>
-            
-            <%if user_signed_in? && (current_user.normal?)%>
-                <li class="nav-item">
-                <%= link_to 'My Tickets', user_general_vew_path, class: 'nav-link active' %>
-                </li>
-            <%end%>
         <% if user_signed_in? %>
-            <%= link_to "Log out", destroy_user_session_path, class:"btn btn-primary btn-sm px-2 rounded-pill col-md-2", style:"--bs-bg-opacity: .4;"%>
+          <% if current_user.supervisor? || current_user.admin? %>
+            <li class="nav-item">
+              <%= link_to 'Users', users_path, class: 'nav-link active' %>
+            </li>
+          <% end %>
+          <% if current_user.alumno? %>
+            <li class="nav-item">
+              <%= link_to 'Tema', temas_path, class: 'nav-link active' %>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <%= button_to "Log out", destroy_user_session_path, method: :delete, class:"btn btn-primary", style:"--bs-bg-opacity: .4;"%>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign Up", new_user_registration_path, class: 'nav-link active' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log In", new_user_session_path, class: 'nav-link active' %>
+          </li>
         <% end %>
-        </div>
+      </ul>
     </div>
+  </div>
 </nav>

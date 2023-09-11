@@ -28,8 +28,11 @@ class UsersController < ApplicationController
     # POST /users or /users.json
     def create
       @user = User.new(user_params)
+      puts("WEON\n\n\n\n\n\n\n\n\n\n\n")
+      # debugger
   
       respond_to do |format|
+        debugger
         if @user.save
           format.html { redirect_to user_url(@user), notice: "User was successfully created." }
           format.json { render :show, status: :created, location: @user }
@@ -53,20 +56,15 @@ class UsersController < ApplicationController
       end
     end
   
-    def user_general_vew
-      @user = current_user
-      #@user = User.find(params[:id])
-      @tickets_by_date = @user.tickets.order(created_at: :desc)
-    end
 
     # DELETE /users/1 or /users/1.json
     def destroy
-      @user.destroy
+      #@user.destroy
   
-      respond_to do |format|
-        format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-        format.json { head :no_content }
-      end
+      # respond_to do |format|
+      #   format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      #   format.json { head :no_content }
+      # end
     end
   
     private
