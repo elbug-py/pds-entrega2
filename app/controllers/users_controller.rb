@@ -53,25 +53,21 @@ class UsersController < ApplicationController
       end
     end
   
-    def user_general_vew
-      @user = current_user
-      #@user = User.find(params[:id])
-      @tickets_by_date = @user.tickets.order(created_at: :desc)
-    end
 
     # DELETE /users/1 or /users/1.json
     def destroy
-      @user.destroy
+      #@user.destroy
   
-      respond_to do |format|
-        format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-        format.json { head :no_content }
-      end
+      # respond_to do |format|
+      #   format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      #   format.json { head :no_content }
+      # end
     end
   
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_user
+        debugger
         @user = User.find(params[:id])
       end
   
