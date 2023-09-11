@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 User.create!(nombre:"Mati",email:"example@example.com",password:"123456",apellido:"munoz")
+User.create!(nombre:"Elbug", email:"romero.vicente2000@gmail.com", password: "123123", apellido:"Romero", profile: 3)
 Tema.create(materia_actual:"Ley de Gases Ideales")
 AltQuestion.create!(tema_id:Tema.first().id,enunciado:"¿Qué tipo de información proporciona un diagrama de fases PvT?",
             alternativa1:"Información sobre la densidad de una sustancia.",
