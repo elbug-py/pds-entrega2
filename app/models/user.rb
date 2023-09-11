@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :trackable, # Add :trackable module for user activity tracking
+        #  :trackable, # Add :trackable module for user activity tracking
          :authentication_keys => [:email]
 
 
