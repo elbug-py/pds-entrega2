@@ -2,7 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :trackable, # Add :trackable module for user activity tracking
-         :authentication_keys => [:email, :nombre, :apellido]
+         :authentication_keys => [:email]
 
 
   
@@ -29,7 +29,7 @@ class User < ApplicationRecord
   def alumno?
     profile == "alumno"
   end
-  validates :nombre, presence: true
-  validates :apellido, presence: true
+  # validates :nombre, presence: true
+  # validates :apellido, presence: true
   # has_one :tema
 end
