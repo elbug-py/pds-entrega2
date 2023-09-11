@@ -67,4 +67,6 @@ class TemasController < ApplicationController
     def tema_params
       params.require(:tema).permit(:materia_actual)
     end
+
+    
 end
