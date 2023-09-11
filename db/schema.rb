@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_09_150948) do
 
   create_table "dev_questions", force: :cascade do |t|
     t.bigint "tema_id", null: false
-    t.text "enunciado", null: false
+    t.text "enunciado"
     t.integer "dificultad", null: false
     t.string "tip", null: false
     t.datetime "created_at", null: false
