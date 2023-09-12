@@ -62,11 +62,11 @@
         
       } 
       else {
-        if (correct1) {
-          malas = "1"
-        }
-        else if (correct2) {
+        if (correct1 && !correct2) {
           malas = "2"
+        }
+        else if (correct2 && !correct1) {
+          malas = "1"
         }
         else {
           malas = "1 y 2"
