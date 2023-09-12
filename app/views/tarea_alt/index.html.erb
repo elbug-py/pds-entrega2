@@ -33,7 +33,9 @@
           response.number_question = preg_id;
           response.answer = selectedValue;
           response.correct = selectedValue === answer;
-          to_send = {'index':i,'preguntas':preg,'again':again}
+          selected = answered.filter(x=>x.correct!==true).map(x=>x.answer)
+
+          to_send = {'index':i,'preguntas':preg,'again':again,'selected':selected}
           const jsonData = JSON.stringify(to_send)
             // console.log("presed")
 
