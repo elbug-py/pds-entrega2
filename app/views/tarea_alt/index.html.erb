@@ -1,5 +1,6 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+      var loop =0;
 
       const responderButton = document.getElementById('alt-container');
       const total_questions = Number(responderButton.getAttribute('data-length'))
@@ -51,7 +52,9 @@
               var parent = document.getElementById('alt_question')
               console.log(data);
               if(data.msg){
-                ready(answered)
+                loop += 1
+
+                ready(answered,loop)
               }else{
                   parent.innerHTML = ""
                   parent.innerHTML = data.html
@@ -83,7 +86,7 @@
     // const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     
     
-    function ready(answered){
+    function ready(answered,loop){
         console.log(answered)
         if (answered.map(x => x.correct).every(x => x===true) || answered.filter(x=>x.correct==true).length===total_questions) {
             Swal.fire({
@@ -99,6 +102,10 @@
           icon: 'error',
           title: 'Oops... respuesta(s) incorrecta(s)',
         }).then((results)=>{
+           if(loop===2){
+
+            window.location.href = "/#"
+           }
             preg = answered.filter(x=>x.correct!==true).map(x=>x.number_question)
             selected = answered.filter(x=>x.correct!==true).map(x=>x.answer)
 
