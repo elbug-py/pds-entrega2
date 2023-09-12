@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#home"
   get 'tarea_alt', to: 'tarea_alt#index'
+  get 'tarea_dev', to: 'tarea_dev#index'
 end
