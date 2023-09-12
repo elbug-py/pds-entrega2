@@ -1,16 +1,9 @@
 <script>
-    let bool_answered = [];
-    let answered = [];
-    function ready(answered){
-
-
-    }
-
-</script>
-
-<script>
     document.addEventListener("DOMContentLoaded", function() {
+
       const responderButton = document.getElementById('alt-container');
+      const total_questions = Number(responderButton.getAttribute('data-length'))
+
       const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
       responderButton.addEventListener("click", function(event) {
         if(event.target.id === 'responder-button'){
@@ -19,7 +12,11 @@
         const selectedValue = document.querySelector('input[name="checkboxGroup"]:checked').value;
         const answer  = document.getElementById("respuesta").getAttribute("data-respuesta")
         const i  = document.getElementById("respuesta").getAttribute("data-i")
+        const preg_id  = document.getElementById("respuesta").getAttribute("data-id")
+
         const preg  = document.getElementById("lista").getAttribute("data-list")
+        const again  = document.getElementById("respuesta").getAttribute("data-again")
+
 
 
         // console.log(answer)
@@ -33,10 +30,10 @@
         
         if (selectedValue) {
              // You can now use the selectedValue as needed (e.g., submit it via AJAX, display it to the user, etc.)
-          response.number_question = i;
+          response.number_question = preg_id;
           response.answer = selectedValue;
           response.correct = selectedValue === answer;
-          to_send = {'index':i,'preguntas':preg}
+          to_send = {'index':i,'preguntas':preg,'again':again}
           const jsonData = JSON.stringify(to_send)
             // console.log("presed")
 
@@ -50,26 +47,21 @@
             }).then(res => res.json())
             .then(data =>{
               var parent = document.getElementById('alt_question')
-            //   console.log(data)
-              parent.innerHTML = ""
-              parent.innerHTML = data.html
+              console.log(data);
+              if(data.msg){
+                ready(answered)
+              }else{
+                  parent.innerHTML = ""
+                  parent.innerHTML = data.html
+
+              }
             })
             .catch(error=>{
               console.log('Error',error)
             })
          
-
-
-          if(selectedValue === answer){
-
-            
-            
-            
-            
-            // console.log(response)
             answered.push(response);
 
-          }
           
         } else {
           alert("Please select an option before responding.");
@@ -82,11 +74,71 @@
         }
 
       });
-    });
-  </script>
-  
+      
+      
+    let bool_answered = [];
+    let answered = [];
+    // const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    
+    
+    function ready(answered){
+        console.log(answered)
+        if (answered.map(x => x.correct).every(x => x===true) || answered.filter(x=>x.correct==true).length===total_questions) {
+            Swal.fire({
+                icon: 'success',
+          title: 'Correcto',
+          text: 'Respuesta correcta',
+          confirmButtonText: 'Continuar',
+        }).then((result)=>{
+            window.location.href = "/#"
+        })
+    }else{
+            Swal.fire({
+          icon: 'error',
+          title: 'Oops... respuesta(s) incorrecta(s)',
+        }).then((results)=>{
+            preg = answered.filter(x=>x.correct!==true).map(x=>x.number_question)
+            selected = answered.filter(x=>x.correct!==true).map(x=>x.answer)
 
-<div class="container" id="alt-container" >
+            to_send = {'index':0,'preguntas':preg,'again':true,'selected':selected}
+            const jsonData = JSON.stringify(to_send)
+
+            fetch(`/next_alt_again`,{
+                method:'POST',
+              headers:{
+                  'X-CSRF-TOKEN':csrfToken
+                },
+                body:jsonData
+            }).then(res => res.json())
+            .then(data =>{
+                var parent = document.getElementById('alt_question')
+                console.log(data);
+                if(data.msg){
+                    ready(answered)
+                }else{
+                    parent.innerHTML = ""
+                    parent.innerHTML = data.html
+
+              }
+            })
+            .catch(error=>{
+              console.log('Error',error)
+            })
+            answered = answered.filter(x=>x.correct===true).map(x=>x.number_question)
+            return answered
+            
+        })
+    }
+    
+    
+    
+}
+});
+</script>
+
+
+
+<div class="container" id="alt-container" data-length='<%=@preguntas.length %>' >
     <h1><%= @tema.materia_actual%></h1>
 
 

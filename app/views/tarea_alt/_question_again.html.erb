@@ -1,0 +1,52 @@
+
+<div class="card-header">
+    Q<%=i+1%>
+  </div>
+  
+  <div class="card-body">
+    <h5 class="card-title"><%=pregunta.enunciado %></h5>
+    <div id="respuesta" data-respuesta="<%=pregunta.respuesta%>" data-id="<%= pregunta.id%>" data-again="true" data-i="<%=i%>"></div>
+
+
+    <div class="list-group">
+      <label class="list-group-item">
+        <input class="form-check-input me-1" type="radio" name="checkboxGroup" value="a">
+        <%= pregunta.alternativa1%> 
+        <%if prev_ans == 'a'%>
+        <%= pregunta.tip1 %>
+        <%end%>
+      </label>
+      <label class="list-group-item">
+        <input class="form-check-input me-1" type="radio" name="checkboxGroup" value="b">
+        <%= pregunta.alternativa2%>
+        <%if prev_ans == 'b'%>
+        <%= pregunta.tip2 %>
+        <%end%>
+
+      </label>
+      <label class="list-group-item">
+        <input class="form-check-input me-1" type="radio" name="checkboxGroup" value="c">
+        <%= pregunta.alternativa3%>
+        <%if prev_ans == 'c'%>
+        <%= pregunta.tip3 %>
+        <%end%>
+
+      </label>
+      <label class="list-group-item">
+        <input class="form-check-input me-1" type="radio" name="checkboxGroup" value="d">
+        <%= pregunta.alternativa4%>
+        <%if prev_ans == 'd'%>
+        <%= pregunta.tip4 %>
+        <%end%>
+
+      </label>
+
+    </div>
+    <br>
+    
+    <button class="btn btn-primary" id="responder-button">Responder</button>
+    <span id='lista' data-list="<%=preguntas%>"></span>
+  
+  </div>
+
+
