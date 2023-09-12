@@ -1,16 +1,101 @@
 <script>
     let bool_answered = [];
     let answered = [];
+    function ready(answered){
 
+
+    }
 
 </script>
 
-<div class="container">
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const responderButton = document.getElementById('alt-container');
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+      responderButton.addEventListener("click", function(event) {
+        if(event.target.id === 'responder-button'){
+            event.preventDefault(); // Prevent the default form submission
+        
+        const selectedValue = document.querySelector('input[name="checkboxGroup"]:checked').value;
+        const answer  = document.getElementById("respuesta").getAttribute("data-respuesta")
+        const i  = document.getElementById("respuesta").getAttribute("data-i")
+        const preg  = document.getElementById("lista").getAttribute("data-list")
+
+
+        // console.log(answer)
+        const response = {
+                'number_question':'',
+                'answer':'',
+                'correct':''
+            }
+
+
+        
+        if (selectedValue) {
+             // You can now use the selectedValue as needed (e.g., submit it via AJAX, display it to the user, etc.)
+          response.number_question = i;
+          response.answer = selectedValue;
+          response.correct = selectedValue === answer;
+          to_send = {'index':i,'preguntas':preg}
+          const jsonData = JSON.stringify(to_send)
+            // console.log("presed")
+
+
+            fetch(`/next_alt`,{
+              method:'POST',
+              headers:{
+                'X-CSRF-TOKEN':csrfToken
+              },
+              body:jsonData
+            }).then(res => res.json())
+            .then(data =>{
+              var parent = document.getElementById('alt_question')
+            //   console.log(data)
+              parent.innerHTML = ""
+              parent.innerHTML = data.html
+            })
+            .catch(error=>{
+              console.log('Error',error)
+            })
+         
+
+
+          if(selectedValue === answer){
+
+            
+            
+            
+            
+            // console.log(response)
+            answered.push(response);
+
+          }
+          
+        } else {
+          alert("Please select an option before responding.");
+        }
+        // console.log(response);
+
+
+
+
+        }
+
+      });
+    });
+  </script>
+  
+
+<div class="container" id="alt-container" >
     <h1><%= @tema.materia_actual%></h1>
 
-    <% i = 0%>
-    <h3>Pregunta <%= @preguntas.find_index(@preguntas[i]) +1%>/<%=@preguntas.length %></h3>
-    <%= render partial: "question",locals:{pregunta:@preguntas[i],i:i} %>
+
+    <h3>Pregunta <%= @preguntas.find_index(@preguntas[@i]) +1%>/<%=@preguntas.length %></h3>
+    <div class="card" id ="alt_question">
+
+    <%= render partial: "question",locals:{pregunta:@Pregunta.find(@preguntas[@i]),i:@i,preguntas:@preguntas} %>
+
+    </div>
 
 
 </div>

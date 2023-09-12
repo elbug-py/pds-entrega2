@@ -18,6 +18,8 @@ class DevQuestionsController < ApplicationController
 
   def generar_pregunta_tipo_1_1_2
     kg = rand(1..10)  # Genera un valor aleatorio entre 1 y 10 kg
+    temperatura = 100
+    presion = 1
 
     pregunta = "Una muestra de agua se encuentra a 100°C y 1 atm de presión. Si se le suministra calor constantemente, ¿cuánto calor en julios se requerirá para convertir completamente #{kg} kg de agua líquida en vapor? (Datos: calor latente de vaporización del agua = 2260 kJ/kg)"
     respuesta = kg*2260000
@@ -29,6 +31,7 @@ class DevQuestionsController < ApplicationController
   def generar_pregunta_tipo_1_1_3
     kg = rand(1..10)  # Genera un valor aleatorio entre 1 y 10 kg
     presion = rand(1..5)
+    temperatura = "?"
     pregunta = "Si tenemos una muestra de gas en un estado concreto, y sabemos que su presión es #{presion} atm y su volumen específico es 0.08 m³/kg, ¿cuál sería su densidad?"
     respuesta = 1/0.08
     DevQuestion.create(enunciado: pregunta, tema: 1, dificultad: 1, tip:"Revisa las unidades de medida del volumen específico.")
@@ -39,6 +42,8 @@ class DevQuestionsController < ApplicationController
   ##### Tema 2 Fácil #####
   def generar_pregunta_tipo_2_1_1
     presion = rand(1..3)
+    temperatura = "?"
+    kg = "?"
     masa_mezcla = rand(1..5)
     masa_liquido = rand(1..3)
     enunciado = "Se tiene una mezcla bifásica líquido-vapor de agua y vapor de agua a una presión de #{presion} bar. La masa total de la mezcla es de #{masa_mezcla} kg. Si la masa del líquido presente en la mezcla es de #{masa_liquido} kg, calcula: 1) La masa de vapor en la mezcla. 2) La calidad de la mezcla. (Datos adicionales: densidad del líquido de agua a esa temperatura y presión = 1000 kg/m³)"
