@@ -37,7 +37,7 @@ class UsersController < ApplicationController
       # debugger
   
       respond_to do |format|
-        debugger
+        # debugger
         if @user.save
           format.html { redirect_to user_url(@user), notice: "User was successfully created." }
           format.json { render :show, status: :created, location: @user }
