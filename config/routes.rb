@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'tarea_alt', to: 'tarea_alt#index'
   post 'next_alt', to: 'tarea_alt#next_question'
   post 'next_alt_again', to: 'tarea_alt#again'
+  post 'next_theme', to:'tarea_dev#next'
 
   get 'tarea_dev', to: 'tarea_dev#index'
 end

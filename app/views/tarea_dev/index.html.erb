@@ -7,15 +7,42 @@
 
 <div class="container">
     <h1><%= @tema.materia_actual%></h1>
-
     <% i = 0%>
     <h3>Pregunta <%= @preguntas.find_index(@preguntas[i]) +1%>/<%=@preguntas.length %></h3>
     <%= render partial: "diagram",locals:{pregunta:@preguntas[i],i:i} %>
+    <button class="btn btn-warning" id="responder-button">Siguiente tema</button>
     <%= render partial: "question",locals:{pregunta:@preguntas[i],i:i} %>
 
 
 </div>
 
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+      const btn = document.getElementById('responder-button')
+      responderButton.addEventListener("click", function(event) {
+        to_send = {'new_tema':2}
+        const jsonData = JSON.stringify(to_send)
+        fetch(`/next_theme`,{
+              method:'POST',
+              headers:{
+                'X-CSRF-TOKEN':csrfToken
+              },
+              body:jsonData
+            }).then(res => res.json())
+            .then(data=>{
+                console.log(data)
+
+            })
+            .catch(error=>{
+              console.log('Error',error)
+            })
+
+    });
+
+</script>
 
 
 
