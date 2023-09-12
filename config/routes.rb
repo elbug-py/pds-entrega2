@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   root "pages#home"
   get 'tarea_alt', to: 'tarea_alt#index'
   post 'next_alt', to: 'tarea_alt#next_question'
+  post 'next_alt_again', to: 'tarea_alt#again'
+
   get 'tarea_dev', to: 'tarea_dev#index'
 end
