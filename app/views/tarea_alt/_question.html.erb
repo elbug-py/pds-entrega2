@@ -1,7 +1,8 @@
 
     <div class="card-header">
-      Q<%=i+1%> 
+      Q<%=i+1%>
     </div>
+    
     <div class="card-body">
       <h5 class="card-title"><%=pregunta.enunciado %></h5>
       <div id="respuesta" data-respuesta="<%=pregunta.respuesta%>" data-i="<%=i%>"></div>
@@ -31,73 +32,9 @@
       </div>
       <br>
       
-      <%= button_to "Responder", '#', class: 'btn btn-primary', id: 'responder-button' %>
-
+      <button class="btn btn-primary" id="responder-button">Responder</button>
+      <span id='lista' data-list="<%=preguntas%>"></span>
     
     </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-  const responderButton = document.getElementById('responder-button');
 
-  responderButton.addEventListener("click", function(event) {
-    event.preventDefault(); // Prevent the default form submission
-
-    const selectedValue = document.querySelector('input[name="checkboxGroup"]:checked').value;
-    const answer = document.getElementById("respuesta").getAttribute("data-respuesta");
-    const i = document.getElementById("respuesta").getAttribute("data-i");
-
-    const response = {
-      'number_question': '',
-      'answer': '',
-      'correct': ''
-    }
-
-    if (selectedValue) {
-      response.number_question = i;
-      response.answer = selectedValue;
-      response.correct = selectedValue === answer;
-
-      if (selectedValue === answer) {
-        fetch('/next_alt', {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'X-CSRF-Token': Rails.csrftoken()
-          }
-        }).then(res => res.json())
-          .then(data => {
-            const nextIndex = data.index;
-            fetch(`/get_next_question?current_index=${nextIndex}`, {
-              method: 'GET',
-              headers: {
-                'Accept': 'application/json',
-                'X-CSRF-Token': Rails.csrftoken()
-              }
-            }).then(response => response.json())
-              .then(data => {
-                const nextQuestion = data.pregunta;
-                const newIndex = data.index;
-
-                const newQuestionHTML = `
-                  <h1><%= @tema.materia_actual %></h1>
-                  <h3>Pregunta ${newIndex + 1}/<%= @preguntas.length %></h3>
-                  <div class="card">
-                    <%= render partial: "question", locals: { pregunta: @preguntas[${newIndex}], i: ${newIndex} } %>
-                  </div>`;
-
-                document.getElementById("alt_question").innerHTML = newQuestionHTML;
-              }).catch(error => {
-                console.log('Error', error)
-              });
-
-            console.log(response);
-            answered.push(response);
-          });
-      }
-
-    } else {
-      alert("Please select an option before responding.");
-    }
-  });
-});
