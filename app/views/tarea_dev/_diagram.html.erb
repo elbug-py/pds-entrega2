@@ -1,0 +1,73 @@
+
+<%presion = 3%>
+<%masa = 5%>
+<%temperatura = 23%>
+
+<script>
+  // Calcula def_height en JavaScript
+  var t_height = 90 - (4 / 5) * <%= temperatura %>;
+  var def_height = t_height.toString();
+
+  // Función para actualizar la altura del rectángulo del termómetro
+  function actualizarAlturaTermometro() {
+    var termometroRect = document.getElementById("mercurio");
+    termometroRect.setAttribute("height", def_height);
+  }
+
+  // Llama a la función para inicializar la altura del termómetro
+  window.onload = function () {
+    actualizarAlturaTermometro();
+  };
+</script>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200">
+  <!-- Cara frontal del cubo -->
+  <polygon points="50,50 150,50 150,150 50,150" fill="none" stroke="black" stroke-width="2" />
+
+  <!-- Liquido -->
+  <polygon points="50,100 150,100 150,150 50,150" fill="lightblue" stroke="black" stroke-width="1"  />
+  <polygon points="30,80 50,100 50,150 30,130" fill="lightblue" stroke="black" stroke-width="1" />
+  <polygon points="50,80 130,80 130,100 50,100" fill="lightblue" stroke="black" stroke-width="1"  />
+  <polygon points="50,80 130,80 130,100 50,100" fill="lightblue" stroke="black" stroke-width="1"  />
+  <polygon points="130,80 150,100 130,100 130,100" fill="lightblue" stroke="black" stroke-width="1"  />
+  <polygon points="30,80 50,80 50,100 30,80" fill="lightblue" stroke="black" stroke-width="1"  />
+
+
+  <!-- Conexiones entre las caras -->
+  <line x1="150" y1="50" x2="130" y2="30" stroke="black" stroke-width="2" />
+  <line x1="50" y1="50" x2="30" y2="30" stroke="black" stroke-width="2" />
+  <line x1="150" y1="150" x2="130" y2="130" stroke="black" stroke-width="2" />
+  <line x1="50" y1="150" x2="30" y2="130" stroke="black" stroke-width="2" />
+
+  <!-- Cara trasera del cubo -->
+  <polygon points="30,30 130,30 130,130 30,130" fill="none" stroke="black" stroke-width="2" />
+
+  <line x1="140" y1="130" x2="170" y2="130" stroke="black" stroke-width="1" />
+  <text x="170" y="120" font-size="11" text-anchor="middle" fill="black">50 kg</text> <!-- Cambiar segun masa -->
+  
+  <!-- Flecha presion -->
+  <line x1="100" x2="100" y1="0" y2="20" stroke="black" stroke-width="2"/>
+  <polygon points="95,20 105,20 100,40" fill="black" />
+  <text x="80" y="10" font-size="11" text-anchor="middle" fill="black">10 atm</text> <!-- Cambiar segun presion -->
+
+  <!-- Termometro -->
+  <circle cx="250" cy="120" r="10" fill="red" stroke="black" stroke-width="1"/>
+  <rect x="245" y="20" width="10" height="100" fill="red" />
+  <rect id="mercurio" x="245" y="20" width="10" height="" fill="grey" /> <!-- Cambiar segun temperatura -->
+
+  <line x1="245" y1="30" x2="240" y2="30" stroke="black" stroke-width="1" />
+  <text x="230" y="30" font-size="8" text-anchor="middle" fill="black">100 °C</text>
+  
+  <line x1="245" y1="50" x2="240" y2="50" stroke="black" stroke-width="1" />
+  <text x="230" y="50" font-size="8" text-anchor="middle" fill="black">75 °C</text>
+
+  <line x1="245" y1="70" x2="240" y2="70" stroke="black" stroke-width="1" />
+  <text x="230 " y="70" font-size="8" text-anchor="middle" fill="black">50 °C</text>
+
+  <line x1="245" y1="90" x2="240" y2="90" stroke="black" stroke-width="1" />
+  <text x="230 " y="90" font-size="8" text-anchor="middle" fill="black">25 °C</text>
+
+  <line x1="245" y1="110" x2="240" y2="110" stroke="black" stroke-width="1" />
+  <text x="230" y="110" font-size="8" text-anchor="middle" fill="black">0 °C</text>
+  
+</svg>

@@ -1,0 +1,93 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<div class="card">
+    <div class="card-header">
+      Q<%=i+1%> 
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%=pregunta.enunciado %></h5>
+      <p class="card-text" id="respuesta" ><%=@respuestas%></p>
+     
+
+      <br>
+      <!-- <%= button_to "Responder", '#',class:'btn btn-primary' %> -->
+      <%= button_to "Responder", '#', class: 'btn btn-primary', id: 'responder-button' %>
+      </div>
+
+      <div class="list-group">
+        <label class="list-group-item">
+          1.
+          <input type="text" class="form-control" placeholder="Respuesta" id="answer1">
+        </label>
+        <label class="list-group-item">
+          2.
+          <input type="text" class="form-control" placeholder="Respuesta" id="answer2">
+        </label>
+      </div>
+    
+    </div>
+  </div>
+
+
+
+
+  <script>
+    var respuestas = <%= @respuestas.to_json.html_safe %>;
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+  const responderButton = document.getElementById('responder-button');
+  
+  responderButton.addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    
+    const answer1 = document.getElementById("answer1").value;
+    const answer2 = document.getElementById("answer2").value;
+
+    if (answer1 !== "" && answer2 !== "") {
+      error1 = Math.abs(answer1 - respuestas[0])
+      error2 = Math.abs(answer2 - respuestas[1])
+      correct1 = error1 <= 0.1
+      correct2 = error2 <= 0.1
+      if (correct1 && correct2) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Correcto',
+          text: 'Respuesta correcta',
+          confirmButtonText: 'Continuar',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "/#"
+          }
+        })
+        
+      } 
+      else {
+        if (correct1 && !correct2) {
+          malas = "2"
+        }
+        else if (correct2 && !correct1) {
+          malas = "1"
+        }
+        else {
+          malas = "1 y 2"
+        }
+
+        Swal.fire({
+          icon: 'error,',
+          title: 'Oops... respuesta(s) '+malas+' incorrecta(s)',
+          text: 'Hint: '+ <%= pregunta.tip.to_json.html_safe %>,
+        })
+        
+      }
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Contesta ambas preguntas antes de continuar',
+      })
+    }
+  });
+});
+
+  </script>
+  
