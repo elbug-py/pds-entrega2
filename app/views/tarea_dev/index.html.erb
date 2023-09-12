@@ -10,7 +10,7 @@
     <% i = 0%>
     <h3>Pregunta <%= @preguntas.find_index(@preguntas[i]) +1%>/<%=@preguntas.length %></h3>
     <%= render partial: "diagram",locals:{pregunta:@preguntas[i],i:i} %>
-    <%= link_to 'Aumentar Tema', incrementar_tema_path, method: :get, class: 'btn btn-primary' %>
+    <%= link_to 'Saltar Tema', incrementar_tema_path, method: :get, class: 'btn btn-warning' %>
     <%= render partial: "question",locals:{pregunta:@preguntas[i],i:i} %>
 
 
