@@ -17,10 +17,12 @@
           1.
           <input type="text" class="form-control" placeholder="Respuesta" id="answer1">
         </label>
-        <label class="list-group-item">
-          2.
-          <input type="text" class="form-control" placeholder="Respuesta" id="answer2">
-        </label>
+        <%if @soluciones == 2%>
+          <label class="list-group-item">
+            2.
+            <input type="text" class="form-control" placeholder="Respuesta" id="answer2">
+          </label>
+        <%end%>
       </div>
     
     </div>
@@ -33,60 +35,127 @@
     var respuestas = <%= @respuestas.to_json.html_safe %>;
   </script>
   <script>
+    var intentos = 0;
+  </script>
+  <script>
     document.addEventListener("DOMContentLoaded", function() {
+      
   const responderButton = document.getElementById('responder-button');
   
   responderButton.addEventListener("click", function(event) {
     event.preventDefault(); // Prevent the default form submission
     
+    console.log(intentos);
     const answer1 = document.getElementById("answer1").value;
-    const answer2 = document.getElementById("answer2").value;
 
-    if (answer1 !== "" && answer2 !== "") {
-      error1 = Math.abs(answer1 - respuestas[0])
-      error2 = Math.abs(answer2 - respuestas[1])
-      correct1 = error1 <= 0.1
-      correct2 = error2 <= 0.1
-      if (correct1 && correct2) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Correcto',
-          text: 'Respuesta correcta',
-          confirmButtonText: 'Continuar',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.location.href = "/#"
+    // Check if the second answer input exists
+    const answer2Element = document.getElementById("answer2");
+    const answer2 = answer2Element ? answer2Element.value : null;
+
+    if (answer1 !== "") {
+      const error1 = Math.abs(answer1 - respuestas[0]);
+      const correct1 = error1 <= 0.1;
+
+      if (answer2 === null) {
+        // Single-answer question
+        if (correct1) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Correcto',
+            text: 'Respuesta correcta',
+            confirmButtonText: 'Continuar',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "/#";
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Respuesta incorrecta',
+            text: <%= pregunta.tip.to_json.html_safe %>,
+          });
+          intentos = intentos + 1;
+          if(intentos > 1){
+            Swal.fire({
+            icon: 'error',
+            title: 'Respuesta incorrecta',
+            text: 'Se te acabaron los intentos, la respuesta correcta es: ' + respuestas[0],
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "/#";
+            }
+          });
           }
-        })
-        
-      } 
-      else {
-        if (correct1 && !correct2) {
-          malas = "2"
         }
-        else if (correct2 && !correct1) {
-          malas = "1"
-        }
-        else {
-          malas = "1 y 2"
-        }
+      } else {
+        // Two-answer question
+        const error2 = Math.abs(answer2 - respuestas[1]);
+        const correct2 = error2 <= 0.1;
 
-        Swal.fire({
-          icon: 'error,',
-          title: 'Oops... respuesta(s) '+malas+' incorrecta(s)',
-          text: 'Hint: '+ <%= pregunta.tip.to_json.html_safe %>,
-        })
-        
+        if (correct1 && correct2) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Correcto',
+            text: 'Respuestas correctas',
+            confirmButtonText: 'Continuar',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "/#";
+            }
+          });
+        } else {
+          let malas = "";
+
+          if (correct1) {
+            malas = "2";
+          } else if (correct2) {
+            malas = "1";
+          } else {
+            malas = "1 y 2";
+          }
+
+          Swal.fire({
+            icon: 'error',
+            title: 'Respuesta(s) ' + malas + ' incorrecta(s)',
+            text: <%= pregunta.tip.to_json.html_safe %>,
+          });
+          intentos = intentos + 1;
+          if(intentos > 1){
+            Swal.fire({
+            icon: 'error',
+            title: 'Respuesta incorrecta',
+            text: 'Se te acabaron los intentos, la respuesta correcta es: ' + respuestas[0],
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "/#";
+            }
+          });
+          }
+        }
       }
     } else {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Contesta ambas preguntas antes de continuar',
-      })
+        text: 'Contesta la pregunta antes de continuar',
+      });
+      intentos = intentos + 1;
+          if(intentos > 1){
+            Swal.fire({
+            icon: 'error',
+            title: 'Respuesta incorrecta',
+            text: 'Se te acabaron los intentos, la respuesta correcta es: ' + respuestas[0],
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "/#";
+            }
+          });
+          }
     }
   });
 });
+
 
   </script>
   

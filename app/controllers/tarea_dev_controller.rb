@@ -6,7 +6,7 @@ class TareaDevController < ApplicationController
         
         @preguntas =[]
         for i in 1..1
-            @preguntas.push(generar_pregunta_tipo_2_1_1)
+            @preguntas.push(generar_pregunta_tipo_1_1_1)
         end
     end
     
