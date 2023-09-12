@@ -14,6 +14,11 @@ class UsersController < ApplicationController
     # GET /users/1 or /users/1.json
     def show
     end
+
+    def next_tema
+      current_user.increment!(:materia_actual)
+      redirect_to '#', notice: 'Tema siguiente.'
+    end
   
     # GET /users/new
     def new

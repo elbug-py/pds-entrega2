@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
     helper_method :get_tema
     helper_method :generar_pregunta_tipo_2_1_1
     helper_method :generar_pregunta_tipo_1_1_1
+    helper_method :next_tema
 
     def get_tema
         if user_signed_in?
