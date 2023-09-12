@@ -1,0 +1,46 @@
+<% temp = @variables[:temperatura] %>
+<%presion = @variables[:presion]%>
+<%masa = @variables[:kg]%>
+<%temperatura = temp%>
+
+<script>
+  // Calcula def_height en JavaScript
+  var t_height = 90 - (4 / 5) * <%= temperatura %>;
+  var def_height = t_height.toString();
+
+  // Función para actualizar la altura del rectángulo del termómetro
+  function actualizarAlturaTermometro() {
+    var termometroRect = document.getElementById("mercurio");
+    termometroRect.setAttribute("height", def_height);
+  }
+
+  // Llama a la función para inicializar la altura del termómetro
+  window.onload = function () {
+    actualizarAlturaTermometro();
+  };
+</script>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200">
+  <polygon points="50,110 120,110 120,80 50,80" fill="blue" />
+  <polygon points="50,80 120,80 120,50 50,50" fill="brown" />
+  <polygon points="50,50 120,50 120,45 50,45" fill="grey" />
+  <line x1="50" y1="0" x2="50" y2="110" stroke="black" stroke-width="2" />
+  <line x1="50" y1="110" x2="120" y2="110" stroke="black" stroke-width="2" />
+  <line x1="120" y1="110" x2="120" y2="0" stroke="black" stroke-width="2" />
+
+  <!-- Flecha presion -->
+  <line x1="100" x2="100" y1="0" y2="20" stroke="black" stroke-width="2"/>
+  <polygon points="95,20 105,20 100,40" fill="black" />
+  <text x="80" y="10" font-size="11" text-anchor="middle" fill="black"><%=@variables[:presion]%> bar</text> <!-- Cambiar segun presion -->
+
+  <line x1="85" y1="45" x2="85" y2="35" stroke="grey" stroke-width="5" />
+  
+  <!-- Termometro -->
+  <line x1="110" y1="100" x2="130" y2="100" stroke="black" stroke-width="1" />
+
+  <text x="150" y="100" font-size="11" text-anchor="middle" fill="black"><%=@variables[:masa_liquido]%> kg</text> <!-- Cambiar segun masa liquido -->
+    
+  <text x="170" y="30" font-size="11" text-anchor="middle" fill="black">Masa total: <%=@variables[:masa_mezcla]%> kg</text> <!-- Cambiar segun masa -->
+
+</svg>

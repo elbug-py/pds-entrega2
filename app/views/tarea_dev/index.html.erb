@@ -9,7 +9,11 @@
     <h1><%= @tema.materia_actual%></h1>
     <% i = 0%>
     <h3>Pregunta <%= @preguntas.find_index(@preguntas[i]) +1%>/<%=@preguntas.length %></h3>
-    <%= render partial: "diagram",locals:{pregunta:@preguntas[i],i:i} %>
+    <%if @tema.materia_actual=="Calidad de mezclas"%>
+        <%= render partial: "diagram_tema2", locals:{pregunta:@preguntas[i],i:i}%>
+    <% elsif @tema.materia_actual=="Ley de Gases Ideales" %>
+        <%= render partial: "diagram",locals:{pregunta:@preguntas[i],i:i} %>
+    <%end%>
     <%= link_to 'Saltar Tema', incrementar_tema_path, method: :get, class: 'btn btn-warning' %>
     <%= render partial: "question",locals:{pregunta:@preguntas[i],i:i} %>
 
