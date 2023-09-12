@@ -10,6 +10,7 @@
 
     <% i = 0%>
     <h3>Pregunta <%= @preguntas.find_index(@preguntas[i]) +1%>/<%=@preguntas.length %></h3>
+    <%= render partial: "diagram",locals:{pregunta:@preguntas[i],i:i} %>
     <%= render partial: "question",locals:{pregunta:@preguntas[i],i:i} %>
 
 

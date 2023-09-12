@@ -1,7 +1,7 @@
-
-<%presion = 3%>
-<%masa = 5%>
-<%temperatura = 23%>
+<% temp = @variables[:temperatura] %>
+<%presion = @variables[:presion]%>
+<%masa = @variables[:kg]%>
+<%temperatura = temp%>
 
 <script>
   // Calcula def_height en JavaScript
@@ -43,12 +43,12 @@
   <polygon points="30,30 130,30 130,130 30,130" fill="none" stroke="black" stroke-width="2" />
 
   <line x1="140" y1="130" x2="170" y2="130" stroke="black" stroke-width="1" />
-  <text x="170" y="120" font-size="11" text-anchor="middle" fill="black">50 kg</text> <!-- Cambiar segun masa -->
+  <text x="170" y="120" font-size="11" text-anchor="middle" fill="black"><%=@variables[:kg]%> kg</text> <!-- Cambiar segun masa -->
   
   <!-- Flecha presion -->
   <line x1="100" x2="100" y1="0" y2="20" stroke="black" stroke-width="2"/>
   <polygon points="95,20 105,20 100,40" fill="black" />
-  <text x="80" y="10" font-size="11" text-anchor="middle" fill="black">10 atm</text> <!-- Cambiar segun presion -->
+  <text x="80" y="10" font-size="11" text-anchor="middle" fill="black"><%=@variables[:presion]%>  atm</text> <!-- Cambiar segun presion -->
 
   <!-- Termometro -->
   <circle cx="250" cy="120" r="10" fill="red" stroke="black" stroke-width="1"/>

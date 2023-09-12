@@ -53,7 +53,7 @@ class DevQuestionsController < ApplicationController
     DevQuestion.create(enunciado: enunciado, tema: 2, dificultad: 1, tip: tip)
   end
 
-  def generar_pregunta_tema_1_facil:
+  def generar_pregunta_tema_1_facil
     choice = rand(0..3)
     if choice==0
       generar_pregunta_tipo_1_1_1
