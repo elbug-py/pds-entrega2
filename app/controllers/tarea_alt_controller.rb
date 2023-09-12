@@ -11,6 +11,14 @@ def index
 end
 
 
+def next_question
+    json_data = JSON.parse(request.body.read)
+    i = body["index"]
+    
+
+end
+
+
 
 
 

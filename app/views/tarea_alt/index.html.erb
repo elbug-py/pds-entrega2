@@ -5,12 +5,16 @@
 
 </script>
 
-<div class="container">
+<div class="container" id ="alt_question">
     <h1><%= @tema.materia_actual%></h1>
 
     <% i = 0%>
     <h3>Pregunta <%= @preguntas.find_index(@preguntas[i]) +1%>/<%=@preguntas.length %></h3>
+    <div class="card">
+
     <%= render partial: "question",locals:{pregunta:@preguntas[i],i:i} %>
+
+    </div>
 
 
 </div>
