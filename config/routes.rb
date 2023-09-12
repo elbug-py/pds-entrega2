@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   post 'next_theme', to:'tarea_dev#next'
 
   get 'tarea_dev', to: 'tarea_dev#index'
+
+  get 'incrementar_tema', to: 'users#next_tema'
 end

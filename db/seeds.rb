@@ -49,7 +49,7 @@ AltQuestion.create!(tema_id:Tema.first().id,enunciado:"En un diagrama de fases P
             dificultad:1)
 
 ############# TEMA 2 #############
-Tema.create(materia_actual:"Ley de Gases Ideales")
+Tema.create(materia_actual:"Calidad de mezclas")
 
 AltQuestion.create!(tema_id: Tema.last.id, enunciado:"¿Qué se entiende por 'calidad' en el contexto de las mezclas?",
             alternativa1:"La cantidad total de sustancias en la mezcla.",

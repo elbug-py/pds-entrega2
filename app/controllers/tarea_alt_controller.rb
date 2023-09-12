@@ -29,7 +29,7 @@ def next_question
         return
 
     end
-    debugger
+    # debugger
     bad_ans = JSON.parse(json_data['again'])
     if bad_ans == true
 
