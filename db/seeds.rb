@@ -30,7 +30,7 @@ tema5 = Tema.create(materia_actual:"Tablas de Saturación")
 temas = [tema1, tema2, tema3, tema4, tema5]
 
 ############# PREG TEMA 1 #############
-### Fácil ###
+### Baja ###
 AltQuestion.create!(tema_id:Tema.first().id,enunciado:"¿Qué tipo de información proporciona un diagrama de fases PvT?",
             alternativa1:"Información sobre la densidad de una sustancia.",
             alternativa2:"Información sobre la temperatura de fusión.",
@@ -136,6 +136,7 @@ alternativas_tema1_alta = [
     ["Las propiedades termodinámicas permanecen constantes.", "Las propiedades termodinámicas son discontinuas debido a los cambios de fase.", "Las propiedades termodinámicas experimentan fluctuaciones periódicas.", "Las propiedades termodinámicas son inestables y no pueden ser medidas con precisión."],
     ["Un punto en el que las tres fases coexisten en equilibrio.", "Un punto en el que la transición de fase ocurre a una velocidad extremadamente lenta.", "Un punto en el que una sustancia cambia directamente de sólido a gas a una temperatura específica.", "Un punto en el que la temperatura y la presión son tan altas que las fases líquida y gaseosa se vuelven indistinguibles."]
 ]
+
 tips_tema1_alta = [
     ["El punto crítico generalmente tiene una temperatura más alta en comparación con otros puntos del diagrama de fases.","El punto crítico no es necesariamente el punto de mayor densidad de la sustancia; en realidad, la densidad es continua a través de la región cercana al punto crítico.","Correcto!","El punto crítico no está relacionado con el calor específico máximo; más bien, está relacionado con el comportamiento de las propiedades de la sustancia en condiciones extremas de temperatura y presión."],
     ["En ese punto tanto el estado líquido como el estado vapor coexisten en equilibrio.","En la curva de coexistencia, el estado líquido también está presente.","Correcto!","La mezcla está en un estado de equilibrio bien definido, y su composición está determinada por la posición en la curva de coexistencia."],
@@ -148,8 +149,8 @@ respuestas_tema1_alta = ["c","c","d","a","b"]
 generar_preguntas_alternativa(1,2, enunciados_tema1_alta, alternativas_tema1_alta, tips_tema1_alta, respuestas_tema1_alta)
 
 ############# PREG TEMA 2 #############
-
-AltQuestion.create!(tema_id: Tema.last.id, enunciado:"¿Qué se entiende por 'calidad' en el contexto de las mezclas?",
+### Baja ###
+AltQuestion.create!(tema_id: 2, enunciado:"¿Qué se entiende por 'calidad' en el contexto de las mezclas?",
             alternativa1:"La cantidad total de sustancias en la mezcla.",
             alternativa2:"La relación entre los diferentes componentes de la mezcla.",
             alternativa3:"La cantidad de energía requerida para mezclar sustancias.",
@@ -161,19 +162,7 @@ AltQuestion.create!(tema_id: Tema.last.id, enunciado:"¿Qué se entiende por 'ca
             respuesta:'b',
             dificultad:1)
 
-AltQuestion.create!(tema_id: Tema.last.id, enunciado:"En una mezcla bifásica líquido-vapor, ¿qué valor de calidad corresponde a un estado completamente líquido?",
-            alternativa1:"0",
-            alternativa2:"0.5",
-            alternativa3:"1",
-            alternativa4:"-1",
-            tip1:"Correcto!",
-            tip2:"La mezcla está en un estado de equilibrio 50-50 entre líquido y vapor, no completamente líquido.",
-            tip3:"La mezcla está en un estado completamente vapor, no en un estado completamente líquido.",
-            tip4:"Un valor negativo no tiene sentido en el contexto de la calidad en una mezcla bifásica líquido-vapor.",
-            respuesta:'a',
-            dificultad:1)
-
-AltQuestion.create!(tema_id: Tema.last.id, enunciado:"¿Cuál es la gama típica de valores de calidad en una mezcla bifásica líquido-vapor?",
+AltQuestion.create!(tema_id: 2, enunciado:"¿Cuál es la gama típica de valores de calidad en una mezcla bifásica líquido-vapor?",
             alternativa1:"0 a 1",
             alternativa2:"-1 a 1",
             alternativa3:"0 a 100",
@@ -185,7 +174,19 @@ AltQuestion.create!(tema_id: Tema.last.id, enunciado:"¿Cuál es la gama típica
             respuesta:'a',
             dificultad:1)
 
-AltQuestion.create!(tema_id: Tema.last.id, enunciado:"Si se tiene una mezcla en la que todos los componentes son idénticos, ¿cómo afecta esto a la calidad de la mezcla?",
+AltQuestion.create!(tema_id: 2, enunciado:"En una mezcla bifásica líquido-vapor, ¿qué valor de calidad corresponde a un estado completamente líquido?",
+            alternativa1:"0",
+            alternativa2:"0.5",
+            alternativa3:"1",
+            alternativa4:"-1",
+            tip1:"Correcto!",
+            tip2:"La mezcla está en un estado de equilibrio 50-50 entre líquido y vapor, no completamente líquido.",
+            tip3:"La mezcla está en un estado completamente vapor, no en un estado completamente líquido.",
+            tip4:"Un valor negativo no tiene sentido en el contexto de la calidad en una mezcla bifásica líquido-vapor.",
+            respuesta:'a',
+            dificultad:1)
+
+AltQuestion.create!(tema_id: 2, enunciado:"Si se tiene una mezcla en la que todos los componentes son idénticos, ¿cómo afecta esto a la calidad de la mezcla?",
             alternativa1:"La calidad no se ve afectada por los componentes.",
             alternativa2:"La calidad siempre será 1.",
             alternativa3:"La calidad siempre será 0.",
@@ -196,3 +197,43 @@ AltQuestion.create!(tema_id: Tema.last.id, enunciado:"Si se tiene una mezcla en 
             tip4:"En el caso de componentes idénticos en estado de vapor, la calidad es perfectamente determinable y siempre será un valor determinado.",
             respuesta:'b',
             dificultad:1)
+
+AltQuestion.create!(tema_id: 2, enunciado:"¿Cuál es la relación entre la calidad y la cantidad de vapor en una mezcla bifásica líquido-vapor?",
+            alternativa1:"A medida que aumenta la cantidad de vapor, la calidad disminuye.",
+            alternativa2:"A medida que aumenta la cantidad de vapor, la calidad aumenta.",
+            alternativa3:"La cantidad de vapor y la calidad son independientes.",
+            alternativa4:"La calidad siempre es igual a la cantidad de vapor.",
+            tip1:"Piensa en la fórmula de calidad de mezcla",
+            tip2:"Correcto!",
+            tip3:"La cantidad de vapor y la calidad están relacionadas, ya que la calidad se refiere a la fracción de masa de vapor en la mezcla. No son independientes.",
+            tip4:" La calidad es la fracción de masa de vapor en la mezcla, pero no siempre es igual a la cantidad de vapor. Puede haber diferentes cantidades de vapor en una mezcla con la misma calidad, dependiendo de la cantidad total de la mezcla.",
+            respuesta:'b',
+            dificultad:1)
+
+### Media ###
+enunciados_tema2_media = [
+    "En una mezcla bifásica líquido-vapor, ¿cómo se calcula la calidad (x) si se conoce la masa del vapor (mv) y la masa total de la mezcla (mt)?",
+    "Se tiene una mezcla líquido-vapor en la que la calidad (x) es 0.6. ¿Qué se puede inferir acerca de la composición de la mezcla?",
+    "En una mezcla bifásica líquido-vapor, ¿qué ocurre con la calidad si se añade más vapor a la mezcla manteniendo la masa total constante?",
+    "Si en una mezcla bifásica líquido-vapor, la calidad (x) es 1, ¿qué significa esto en términos de la composición de la mezcla?",
+    "En una mezcla bifásica líquido-vapor, ¿qué valor de calidad (x) corresponde a un estado en el que solo hay vapor?"
+]
+
+alternativas_tema2_media = [
+    [" x = mv / mt", " x = (mt - mv) / mt", "x = (mt + mv) / mt", "x = mt / mv"],
+    ["La mezcla consiste principalmente en líquido.", "La mezcla consiste en partes iguales de líquido y vapor.", "La mezcla consiste principalmente en vapor.", "La mezcla no contiene vapor."],
+    ["La calidad aumenta.", "La calidad disminuye.", "La calidad permanece igual.", "La calidad puede aumentar o disminuir dependiendo de otros factores."],
+    ["La mezcla contiene solo vapor.", "La mezcla contiene solo líquido.", "La cantidad de vapor y líquido es la misma.", "La calidad no puede ser igual a 1 en una mezcla bifásica."],
+    ["0", "0.5", "1", "Dependerá de la cantidad de vapor."]
+]
+
+tips_tema2_media = [
+    ["Correcto!", "Esta fórmula daría el complemento de la calidad.", "Estaría sumando la masa del vapor a la masa total, lo que resultaría en un valor mayor que 1, lo cual no es válido para la calidad.", "La calidad es la fracción de masa del vapor en relación con la masa total de la mezcla, no al revés."],
+    ["Revisa la fórmula de calidad de mezcla", "Revisa la fórmula de calidad de mezcla", "Correcto!", "La calidad (x) es una medida de la fracción mássica de vapor en la mezcla, por lo que cualquier valor distinto de cero indica la presencia de vapor."],
+    ["Correcto!", "Revisa la fórmula de calidad de mezcla.", "Revisa la fórmula de calidad de mezcla.", "Esta opción no es la correcta en este contexto específico."],
+    ["Correcto!","Una calidad de 0 indicaría que la mezcla está compuesta completamente por líquido.", "Significaría que hay una cantidad igual de vapor y líquido, lo cual no es consistente con una calidad de 1.", "Contendrá líquido?"],
+    ["Un valor de calidad (x) igual a 0 correspondería a un estado en el que solo hay líquido y no hay vapor presente en la mezcla.", "Un valor de calidad (x) igual a 0.5 indicaría que la mezcla tiene igual cantidad de líquido y vapor, es decir, está en equilibrio con una composición de 50% líquido y 50% vapor.", "Correcto!", "La calidad (x) no depende de la cantidad de vapor en el sentido de que su valor se define en función de la masa del vapor y la masa total de la mezcla, independientemente de cuánto vapor haya en la mezcla."]
+]
+respuestas_tema2_media = ["a","c","a","a","c"]
+
+generar_preguntas_alternativa(2,2, enunciados_tema2_media, alternativas_tema2_media, tips_tema2_media, respuestas_tema2_media)
