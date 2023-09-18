@@ -120,17 +120,32 @@ respuestas_tema1_media = ["a","c","c","d","b"]
 
 generar_preguntas_alternativa(1, 2, enunciados_tema1_media, alternativas_tema1_media, tips_tema1_media, respuestas_tema1_media)
 
-# AltQuestion.create!(tema_id:, enunciado:, 
-#             alternativa1:, 
-#             alternativa2:, 
-#             alternativa3:, 
-#             alternativa4:,
-#             tip1:,
-#             tip2:,
-#             tip3:,
-#             tip4:,
-#             respuesta:,
-#             dificultad:)
+### Alta ###
+enunciados_tema1_alta = [
+    "En un diagrama de fases PT, ¿cómo se comporta el punto crítico en relación con las propiedades termodinámicas de la sustancia?",
+    "Supongamos que se tiene una mezcla líquida-vapor en un recipiente en un punto que se encuentra exactamente en la curva de coexistencia de fases en un diagrama PvT. ¿Cómo se vería esta mezcla y cuál sería su composición?",
+    "En un diagrama de fases vT, ¿qué información proporciona la región de vapor sobrecalentado que va más allá de la línea de saturación?",
+    "En un sistema cerrado que contiene una mezcla de sustancias, ¿cómo cambian las propiedades termodinámicas cuando el sistema se encuentra en el punto triple en un diagrama de fases?",
+    "En el contexto de los diagramas de fases, ¿cómo se define el concepto de 'punto metaestable'?"
+]
+
+alternativas_tema1_alta = [
+    ["Tiene la temperatura más baja del diagrama.", "Es el punto de mayor densidad de la sustancia.", "Las propiedades de la sustancia son continuas y no se pueden distinguir entre líquido y vapor.", "Representa el punto de máximo calor específico."],
+    ["La mezcla estaría completamente en estado líquido, con composición 100% líquido.", "La mezcla estaría completamente en estado vapor, con composición 100% vapor.", "La mezcla estaría en equilibrio con una composición constante de líquido y vapor.", "La mezcla estaría en un estado inestable y no tendría una composición definida."],
+    ["La temperatura de transición entre las fases sólida y líquida.", "La temperatura crítica de la sustancia.", "La temperatura a la que la sustancia se encuentra en equilibrio entre sus fases líquida y vapor.", "La relación entre la densidad y la temperatura en la fase gaseosa."],
+    ["Las propiedades termodinámicas permanecen constantes.", "Las propiedades termodinámicas son discontinuas debido a los cambios de fase.", "Las propiedades termodinámicas experimentan fluctuaciones periódicas.", "Las propiedades termodinámicas son inestables y no pueden ser medidas con precisión."],
+    ["Un punto en el que las tres fases coexisten en equilibrio.", "Un punto en el que la transición de fase ocurre a una velocidad extremadamente lenta.", "Un punto en el que una sustancia cambia directamente de sólido a gas a una temperatura específica.", "Un punto en el que la temperatura y la presión son tan altas que las fases líquida y gaseosa se vuelven indistinguibles."]
+]
+tips_tema1_alta = [
+    ["El punto crítico generalmente tiene una temperatura más alta en comparación con otros puntos del diagrama de fases.","El punto crítico no es necesariamente el punto de mayor densidad de la sustancia; en realidad, la densidad es continua a través de la región cercana al punto crítico.","Correcto!","El punto crítico no está relacionado con el calor específico máximo; más bien, está relacionado con el comportamiento de las propiedades de la sustancia en condiciones extremas de temperatura y presión."],
+    ["En ese punto tanto el estado líquido como el estado vapor coexisten en equilibrio.","En la curva de coexistencia, el estado líquido también está presente.","Correcto!","La mezcla está en un estado de equilibrio bien definido, y su composición está determinada por la posición en la curva de coexistencia."],
+    ["La temperatura de transición entre las fases sólida y líquida no se encuentra en la región de vapor sobrecalentado, sino en la región de cambio de fase sólido-líquido.","La temperatura crítica de la sustancia no se encuentra en la región de vapor sobrecalentado, sino en otro punto del diagrama de fases.","La temperatura a la que la sustancia se encuentra en equilibrio entre sus fases líquida y vapor tampoco se encuentra en la región de vapor sobrecalentado, sino en la línea de saturación, donde coexisten líquido y vapor.","Correcto!"],
+    ["Correcto!","Piensa que es un sistema cerrado y qué es el punto triple.","Piensa que es un sistema cerrado y qué es el punto triple.","Piensa que es un sistema cerrado y qué es el punto triple."],
+    ["Esto se conoce como el 'punto triple', no como un punto metaestable.","Correcto!","Esto se refiere a un cambio de fase directo de sólido a gas, conocido como sublimación. No describe un punto metaestable.","Esto no describe un punto metaestable, sino condiciones extremas de alta temperatura y presión en las que las fases líquida y gaseosa pueden comportarse de manera similar, pero no es lo mismo que un punto metaestable."]
+]
+respuestas_tema1_alta = ["c","c","d","a","b"]
+
+generar_preguntas_alternativa(1,2, enunciados_tema1_alta, alternativas_tema1_alta, tips_tema1_alta, respuestas_tema1_alta)
 
 ############# PREG TEMA 2 #############
 
