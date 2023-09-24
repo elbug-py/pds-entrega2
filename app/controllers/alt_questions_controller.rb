@@ -65,6 +65,6 @@ class AltQuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def alt_question_params
-      params.require(:alt_question).permit(:id_tema, :enunciado, :alternativa1, :alternativa2, :alternativa3, :alternativa4, :respuesta, :dificultad)
+      params.require(:alt_question).permit(:tema_id, :enunciado, :alternativa1, :alternativa2, :alternativa3, :alternativa4, :respuesta, :dificultad)
     end
 end
