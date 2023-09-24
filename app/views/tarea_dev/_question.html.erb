@@ -53,8 +53,8 @@
     const answer2 = answer2Element ? answer2Element.value : null;
 
     if (answer1 !== "") {
-      const error1 = Math.abs(answer1 - respuestas[0]);
-      const correct1 = error1 <= 0.1;
+      const error1 = Math.abs(answer1 - respuestas[0])/respuestas[0];
+      const correct1 = error1 <= 0.01;
 
       if (answer2 === null) {
         // Single-answer question
@@ -90,8 +90,8 @@
         }
       } else {
         // Two-answer question
-        const error2 = Math.abs(answer2 - respuestas[1]);
-        const correct2 = error2 <= 0.1;
+        const error2 = Math.abs(answer2 - respuestas[1])/respuestas[1];
+        const correct2 = error2 <= 0.001;
 
         if (correct1 && correct2) {
           Swal.fire({
