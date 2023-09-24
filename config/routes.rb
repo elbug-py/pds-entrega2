@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :dev_questions
   resources :temas
   
-  devise_for :users
+  devise_for :users, controllers: {registrations: 'users/registrations'}
   resources :users
   #get 'users/:id', to: 'users#index', as: 'user'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
